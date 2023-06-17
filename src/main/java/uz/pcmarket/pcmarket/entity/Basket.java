@@ -5,19 +5,23 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Reviews {
+public class Basket {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String description;
-
-    @ManyToOne
+    @ManyToMany
     @JoinColumn(name = "product_id")
-    private Product product;
+    private List<Product> product;
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private Users users;
 }

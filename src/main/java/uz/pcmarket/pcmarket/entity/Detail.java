@@ -9,15 +9,23 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Reviews {
+public class Detail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    private String name;
+
     private String description;
 
+    private double price;
+
+    @OneToOne
+    @JoinColumn(name = "brand_id")
+    private Brand brand;
+
     @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Product product;
+    @JoinColumn(name = "review_id")
+    private Reviews reviews;
 }
